@@ -54,7 +54,7 @@ ul{list-style:none;}
 .line-btn-block{display:flex;width:100%;margin-top:18px;}
 .gnav{background:linear-gradient(90deg,var(--navy-dark),var(--navy) 55%,var(--blue));}
 .gnav ul{display:flex;justify-content:center;}
-.gnav li a{display:block;color:#fff;font-size:15px;font-weight:500;padding:15px 21px;letter-spacing:.05em;}
+.gnav li a{display:block;color:#fff;font-size:14.5px;font-weight:500;padding:15px 14px;letter-spacing:.03em;white-space:nowrap;}
 .gnav li a:hover{background:rgba(255,255,255,.14);}
 .gnav li a .en{display:block;font-size:9px;color:var(--gold-light);letter-spacing:.18em;text-align:center;}
 .gnav-tel{display:none;}
@@ -177,6 +177,22 @@ section{padding:70px 0;}
 .map-card .open{display:block;width:100%;background:var(--navy);color:#fff;font-weight:700;padding:13px;font-size:14.5px;transition:.2s;}
 .map-card:hover .open{background:var(--navy-dark);}
 
+/* ============ blog (店長ブログ) ============ */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.blog-card{display:flex;flex-direction:column;background:#fff;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(16,28,82,.07);transition:.2s;}
+.blog-card:hover{border-color:var(--gold-light);box-shadow:0 10px 26px rgba(16,28,82,.15);transform:translateY(-3px);}
+.blog-thumb{margin:0;background:linear-gradient(165deg,#fff,#f2f5fc);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);overflow:hidden;}
+.blog-thumb img{width:100%;height:100%;object-fit:contain;padding:10px;}
+.blog-thumb--noimg{color:var(--navy);font-weight:700;letter-spacing:.2em;background:var(--gold-pale);}
+.blog-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:9px;flex:1;}
+.blog-meta{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:12.5px;color:var(--muted);}
+.blog-meta time{color:var(--gold);font-weight:700;letter-spacing:.08em;}
+.blog-tag{background:var(--gold-pale);color:#8a6614;border:1px solid rgba(185,140,47,.45);border-radius:999px;font-size:11px;font-weight:700;padding:1px 10px;line-height:1.7;}
+.blog-ttl{font-size:14.5px;line-height:1.62;color:var(--navy-dark);font-weight:700;letter-spacing:.01em;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+.blog-exc{font-size:12.8px;color:var(--muted);line-height:1.78;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.blog-read{margin-top:auto;padding-top:2px;font-size:12.5px;font-weight:700;color:var(--blue);letter-spacing:.06em;}
+.blog-more{text-align:center;margin-top:34px;}
+
 /* ============ contact ============ */
 .contact{background:linear-gradient(120deg,var(--navy-deep),var(--navy));color:#fff;}
 .contact .sec-head h2{color:#fff;}
@@ -230,6 +246,7 @@ footer h4 .en{display:block;font-size:10px;color:#8892b8;letter-spacing:.22em;}
   .methods-grid{grid-template-columns:repeat(2,1fr);}
   .flow-grid{grid-template-columns:repeat(2,1fr);}
   .store-grid,.contact-grid{grid-template-columns:1fr;}
+  .blog-grid{grid-template-columns:repeat(2,1fr);gap:18px;}
   .store-photo img{aspect-ratio:16/10;}
   .docs-box{flex-direction:column;text-align:center;padding:28px 22px;}
   .doc-chips{justify-content:center;}
@@ -270,6 +287,9 @@ footer h4 .en{display:block;font-size:10px;color:#8892b8;letter-spacing:.22em;}
   .item .em{font-size:25px;}
   .item .nm{font-size:12px;}
   .methods-grid,.flow-grid{grid-template-columns:1fr;}
+  .blog-grid{grid-template-columns:1fr;gap:16px;}
+  .blog-thumb{aspect-ratio:16/10;}
+  .blog-ttl{font-size:14px;}
   .tel-panel .num{font-size:32px;}
   .contact-form{padding:24px 18px;}
   .m-telbar{display:grid;}
@@ -317,6 +337,7 @@ footer h4 .en{display:block;font-size:10px;color:#8892b8;letter-spacing:.22em;}
     <li><a href="#top">HOME</a></li>
     <li><a href="#items">買取品目<span class="en">ITEMS</span></a></li>
     <li><a href="#reason">高価買取の理由<span class="en">REASON</span></a></li>
+    <li><a href="#blog">店長ブログ<span class="en">BLOG</span></a></li>
     <li><a href="#method">買取方法<span class="en">METHOD</span></a></li>
     <li><a href="#docs">ご成約時に必要なもの<span class="en">DOCUMENTS</span></a></li>
     <li><a href="#store">店舗案内・アクセス<span class="en">SHOP INFO</span></a></li>
@@ -419,6 +440,79 @@ footer h4 .en{display:block;font-size:10px;color:#8892b8;letter-spacing:.22em;}
       <div><h3>自社オークションを開催</h3><p>買取大吉は定期的に自社オークションを開催しています。自社だからこそ販売コストを削減し、最高値で売却できるため、お客様へも高値でご案内できます。</p></div>
     </div>
     <p class="reasons-foot">全国2,000店舗以上展開の買取大吉グループ ── 香芝畑店まで、安心してご来店ください。</p>
+  </div>
+</section>
+
+<!-- blog（店長ブログ / scripts/sync_daikichi_blog.py が最新記事を自動同期） -->
+<section id="blog" class="bg-cream">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">Store blog</span>
+      <h2 class="serif">店長<span>ブログ</span></h2>
+      <p class="sub">最新のお買取品目やお店からのお知らせを、大吉公式の「店長ブログ」から自動でお届けします。</p>
+    </div>
+<!-- BLOG_RESULTS_START -->
+    <!-- このブロックは scripts/sync_daikichi_blog.py が自動生成しています（手動編集しないでください） -->
+    <div class="blog-grid">
+      <a class="blog-card" href="https://www.kaitori-daikichi.jp/blog/archives/3598860.html" target="_blank" rel="noopener noreferrer">
+        <figure class="blog-thumb"><img src="https://www.kaitori-daikichi.jp/blog/wp-content/uploads/2026/11/transparent-Photoroom-2026-11-16T154037.014.jpg" alt="ROLEX OYSTER PERPETUAL Air King ロレックス オイスターパーペチュアル エアキング 自動巻き 5500 SS 時計をお買取りさせて頂きました！" loading="lazy" decoding="async"></figure>
+        <div class="blog-body">
+          <div class="blog-meta"><time datetime="2026-11-16">2026.11.16</time><span class="blog-tag">ブランド品</span><span class="blog-tag">時計</span></div>
+          <h3 class="blog-ttl">ROLEX OYSTER PERPETUAL Air King ロレックス オイスターパーペチュアル エアキング 自動巻き 5500 SS 時計をお買取りさせて頂きました！</h3>
+          <p class="blog-exc">今回、状態・年式・付属品無しを考慮して金額を算出しました。</p>
+          <span class="blog-read">記事を読む ▷</span>
+        </div>
+      </a>
+      <a class="blog-card" href="https://www.kaitori-daikichi.jp/blog/archives/3589999.html" target="_blank" rel="noopener noreferrer">
+        <figure class="blog-thumb"><img src="https://www.kaitori-daikichi.jp/blog/wp-content/uploads/2026/11/transparent-Photoroom-2026-11-12T142914.042.jpg" alt="ROLEX OYSTER PERPETUAL DATEJUST ロレックス オイスターパーペチュアル デイトジャスト 自動巻き 1601 SS×WG 時計をお買取りさせて頂きました！" loading="lazy" decoding="async"></figure>
+        <div class="blog-body">
+          <div class="blog-meta"><time datetime="2026-11-12">2026.11.12</time><span class="blog-tag">金・貴金属</span><span class="blog-tag">ブランド品</span></div>
+          <h3 class="blog-ttl">ROLEX OYSTER PERPETUAL DATEJUST ロレックス オイスターパーペチュアル デイトジャスト 自動巻き 1601 SS×WG 時計をお買取りさせて頂きました！</h3>
+          <p class="blog-exc">今回、状態・年式・付属品無し・中古相場を考慮して金額を算出しました。</p>
+          <span class="blog-read">記事を読む ▷</span>
+        </div>
+      </a>
+      <a class="blog-card" href="https://www.kaitori-daikichi.jp/blog/archives/3586984.html" target="_blank" rel="noopener noreferrer">
+        <figure class="blog-thumb"><img src="https://www.kaitori-daikichi.jp/blog/wp-content/uploads/2026/11/transparent-Photoroom-2026-11-10T171030.105.jpg" alt="ROLEX OYSTER PERPETUAL DATEJUST ロレックス オイスターパーペチュアル デイトジャスト 自動巻き 69174 SS×WG 時計をお買取りさせて頂きました！" loading="lazy" decoding="async"></figure>
+        <div class="blog-body">
+          <div class="blog-meta"><time datetime="2026-11-10">2026.11.10</time><span class="blog-tag">金・貴金属</span><span class="blog-tag">ブランド品</span></div>
+          <h3 class="blog-ttl">ROLEX OYSTER PERPETUAL DATEJUST ロレックス オイスターパーペチュアル デイトジャスト 自動巻き 69174 SS×WG 時計をお買取りさせて頂きました！</h3>
+          <p class="blog-exc">今回、状態・年式・型番・付属品（ギャランティ・コマ）を考慮して金額を算出しました。</p>
+          <span class="blog-read">記事を読む ▷</span>
+        </div>
+      </a>
+      <a class="blog-card" href="https://www.kaitori-daikichi.jp/blog/archives/3579746.html" target="_blank" rel="noopener noreferrer">
+        <figure class="blog-thumb"><img src="https://www.kaitori-daikichi.jp/blog/wp-content/uploads/2026/11/S__7841206.jpg" alt="CHANEL シャネル マルチカラー ラインストーン ピアス A20Cをお買取りさせて頂きました！" loading="lazy" decoding="async"></figure>
+        <div class="blog-body">
+          <div class="blog-meta"><time datetime="2026-11-06">2026.11.06</time><span class="blog-tag">ブランド品</span></div>
+          <h3 class="blog-ttl">CHANEL シャネル マルチカラー ラインストーン ピアス A20Cをお買取りさせて頂きました！</h3>
+          <p class="blog-exc">今回はシャネルのピアスをお持ち頂きました。有難うございます！</p>
+          <span class="blog-read">記事を読む ▷</span>
+        </div>
+      </a>
+      <a class="blog-card" href="https://www.kaitori-daikichi.jp/blog/archives/3577590.html" target="_blank" rel="noopener noreferrer">
+        <figure class="blog-thumb"><img src="https://www.kaitori-daikichi.jp/blog/wp-content/uploads/2026/11/transparent-Photoroom-2026-11-05T100912.821.jpg" alt="LOUIS VUITTON ルイ ヴィトン モノグラム アンプラント グランバレMM M45811 2WAYバッグをお買取りさせて頂きました！" loading="lazy" decoding="async"></figure>
+        <div class="blog-body">
+          <div class="blog-meta"><time datetime="2026-11-05">2026.11.05</time><span class="blog-tag">ブランド品</span></div>
+          <h3 class="blog-ttl">LOUIS VUITTON ルイ ヴィトン モノグラム アンプラント グランバレMM M45811 2WAYバッグをお買取りさせて頂きました！</h3>
+          <p class="blog-exc">今回のお持ち頂いたお品物はシックな雰囲気と抜群の機能性が魅力の｢グラン･パレ MM｣。モノグラム･ジャイアント パターンをエンボス加工で施したしなやかなグレインレザーで仕上げたデザインです。</p>
+          <span class="blog-read">記事を読む ▷</span>
+        </div>
+      </a>
+      <a class="blog-card" href="https://www.kaitori-daikichi.jp/blog/archives/3573213.html" target="_blank" rel="noopener noreferrer">
+        <figure class="blog-thumb"><img src="https://www.kaitori-daikichi.jp/blog/wp-content/uploads/2026/11/transparent-Photoroom-2026-11-02T173111.518.jpg" alt="LOUIS VUITTON ルイヴィトン LVアエログラム テイクオフ ブリーフケース 2WAYビジネスバッグ M59159をお買取りさせて頂きました！" loading="lazy" decoding="async"></figure>
+        <div class="blog-body">
+          <div class="blog-meta"><time datetime="2026-11-02">2026.11.02</time><span class="blog-tag">ブランド品</span></div>
+          <h3 class="blog-ttl">LOUIS VUITTON ルイヴィトン LVアエログラム テイクオフ ブリーフケース 2WAYビジネスバッグ M59159をお買取りさせて頂きました！</h3>
+          <p class="blog-exc">今回のお持ち頂いたお品物はノートパソコン用のパッド入りポケットを備えた、ビジネスシーンに最適なテイクオフ･ブリーフケースです。</p>
+          <span class="blog-read">記事を読む ▷</span>
+        </div>
+      </a>
+    </div>
+    <p class="blog-more">
+      <a class="cta-btn" href="https://www.kaitori-daikichi.jp/blog/kashiba-hata" target="_blank" rel="noopener noreferrer">店長ブログ一覧を見る ▶</a>
+    </p>
+    <!-- BLOG_RESULTS_END -->
   </div>
 </section>
 
@@ -627,6 +721,7 @@ footer h4 .en{display:block;font-size:10px;color:#8892b8;letter-spacing:.22em;}
           <li><a href="#top">HOME</a></li>
           <li><a href="#items">買取品目</a></li>
           <li><a href="#reason">高価買取の理由</a></li>
+          <li><a href="#blog">店長ブログ</a></li>
           <li><a href="#method">買取方法</a></li>
           <li><a href="#store">店舗案内・アクセス</a></li>
           <li><a href="#faq">よくあるご質問</a></li>
