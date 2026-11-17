@@ -6,7 +6,7 @@
   取得元 : https://www.kaitori-daikichi.jp/blog/kashiba-hata （買取大吉 店長ブログ 香芝畑店）
   更新先 : index.html の <!-- BLOG_RESULTS_START --> 〜 <!-- BLOG_RESULTS_END --> の間
 
-  ・最新6件（3列×2行）を取得し、カードHTMLを書き換える
+  ・最新3件（3列×1行）を取得し、カードHTMLを書き換える
   ・記事サムネイルは個別記事ページの本文（div.blog_txt）先頭の商品写真URLを直リンク
   ・内容に変更があったときだけ index.html を書き換える
   ・変更がなければファイルを触らない（mtime も更新しない）
@@ -16,7 +16,7 @@
   python3 scripts/sync_daikichi_blog.py --dry-run     # 更新内容を表示するだけ（書き込まない）
   python3 scripts/sync_daikichi_blog.py --check-only  # 更新が必要かだけ判定して終了
   python3 scripts/sync_daikichi_blog.py --commit-push # 更新があったら git add/commit/push まで実行
-  python3 scripts/sync_daikichi_blog.py --limit 6 --verbose
+  python3 scripts/sync_daikichi_blog.py --limit 3 --verbose
 
 終了コード:
   0  更新した（--dry-run / --check-only では「更新が必要」）
@@ -43,7 +43,7 @@ from datetime import datetime, timezone, timedelta
 
 BLOG_LIST_URL = "https://www.kaitori-daikichi.jp/blog/kashiba-hata"
 BLOG_BASE = "https://www.kaitori-daikichi.jp"
-DEFAULT_LIMIT = 6
+DEFAULT_LIMIT = 3
 JST = timezone(timedelta(hours=9))
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -328,7 +328,7 @@ def replace_block(index_html: str, block: str) -> str:
 # ---------------------------------------------------------------- main
 def main() -> int:
     ap = argparse.ArgumentParser(description="大吉公式ブログ → 店長ブログセクション同期")
-    ap.add_argument("--limit", type=int, default=DEFAULT_LIMIT, help="取得件数（既定6）")
+    ap.add_argument("--limit", type=int, default=DEFAULT_LIMIT, help="取得件数（既定3）")
     ap.add_argument("--dry-run", action="store_true", help="書き込まずに差分の有無だけ表示")
     ap.add_argument("--check-only", action="store_true", help="更新の要否だけ判定（--dry-run と同じ判定）")
     ap.add_argument("--commit-push", action="store_true", help="更新があったら git commit & push する")

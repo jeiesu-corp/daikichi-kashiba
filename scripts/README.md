@@ -4,7 +4,7 @@
 
 ## sync_daikichi_blog.py — 店長ブログ自動同期
 
-大吉公式ブログ「店長ブログ 香芝畑店」（https://www.kaitori-daikichi.jp/blog/kashiba-hata）の最新6件を取得し、
+大吉公式ブログ「店長ブログ 香芝畑店」（https://www.kaitori-daikichi.jp/blog/kashiba-hata）の最新3件を取得し、
 `index.html` の `<!-- BLOG_RESULTS_START -->` 〜 `<!-- BLOG_RESULTS_END -->` の間をカードHTMLに書き換えます。
 内容に変更がないときはファイルを更新しません（mtime も変えません）。
 
