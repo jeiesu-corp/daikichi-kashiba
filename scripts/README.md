@@ -34,3 +34,28 @@ python3 scripts/sync_daikichi_blog.py --commit-push # 更新したら git add/co
 ```
 
 （終了コード 10 = 変更なし は正常系なので、そのまま失敗扱いにしないこと）
+
+## update_monthly_campaign.py — キャンペーンポップアップの月次差し替え
+
+`index.html` の `<!-- CAMPAIGN_POPUP_START -->` 〜 `<!-- CAMPAIGN_POPUP_END -->` の間だけを、
+その月の季節タイトル（例：11月「秋の特別感謝祭」／12月「歳末・冬の特別感謝祭」）で作り直します。
+「香芝畑店限定！」「買取金額 30%UP」・注記3行・ボタン3つ・期限（その月の末日 23:59:59 JST）・
+1日1回表示／`?campaign=1` で強制表示の制御は毎回そろえて出力します。
+
+```bash
+python3 scripts/update_monthly_campaign.py                  # 今日の月で差し替え
+python3 scripts/update_monthly_campaign.py --month 12        # 12月分を生成（テスト用）
+python3 scripts/update_monthly_campaign.py --month 12 --dry-run  # 書き込まず標準出力へ
+python3 scripts/update_monthly_campaign.py --commit-push     # 差し替えたら git add/commit/push まで
+python3 scripts/update_monthly_campaign.py --list            # 12か月分のタイトル一覧
+```
+
+| 終了コード | 意味 |
+| --- | --- |
+| 0 | 更新した |
+| 10 | 変更なし（正常） |
+| 1 | エラー（マーカー不在など） |
+
+- タイトル・配色・装飾の表はスクリプト冒頭の `MONTHS`。文言を変えたいときはここを編集する。
+- マーカーの中はスクリプトが生成する領域。手作業で編集しない（次の自動更新で上書きされる）。
+- 毎月1日 08:30 の定期アクション（`scheduled-actions/🎉-香芝畑店月次キャンペーン自動更新`）から実行される。
